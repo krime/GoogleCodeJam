@@ -42,61 +42,64 @@ bool find_edge_min(int&y,int&x,int n,int m) {
   return fe;
 }
 
+bool colavail(int x,int n,bool&chk) {
+  int c=l[0][x];
+  int colalong=true;
+  bool chked=f[0][x];
+  for (int i=1;i<n;i++) {
+    chked=chked&&f[i][x];
+    if (c!=l[i][x]) {
+      colalong=false;
+      break;
+    }
+  }
+  chk=chked;
+  return colalong;
+}
+
+bool rowavail(int y,int m,bool&chk) {
+  int c=l[y][0];
+  int rowalong=true;
+  bool chked=f[y][0];
+  for (int i=1;i<m;i++) {
+    chked=chked&&f[y][i];
+    if (c!=l[y][i]) {
+      rowalong=false;
+      break;
+    }
+  }
+  chk=chked;
+  return rowalong;
+}
+
 bool fill_cross(int y,int x,int n,int m) {
-  bool filled=true;
-  bool colchk=false;
-  bool rowchk=false;
-  if (!f[y][x]) {
-    f[y][x]=true;
-    // Column check
-    if (y>0  &&l[y-1][x]==l[y][x]) {
-      //cout<<"Check col upwards"<<endl;
-      for (int i=0;i<n;i++)
-        if (i!=y) {
-          if (l[i][x]!=l[y][x])
-            return false;
-          else filled=filled&&fill_cross(i,x,n,m);
-        }
-      colchk=true;
+  bool colchked=true;
+  bool rowchked=true;
+  for (int i=0;i<n;i++) {
+    for (int j=0;j<m;j++)
+      cout<<f[i][j];
+    cout<<endl;
+  }
+  bool colchk=colavail(x,n,colchked);
+  bool rowchk=rowavail(y,m,rowchked);
+  if (colchked&&rowchked) return true;
+  if (colchk) {
+    for (int i=0;i<n;i++)
+      f[i][x]=true;
+    for (int i=0;i<n;i++) {
+      if (i!=y)
+        fill_cross(i,x,n,m);
     }
-    if (!colchk) {
-      if (y<n-1&&l[y+1][x]==l[y][x]) {
-        //cout<<"Check col downwards"<<endl;
-        for (int i=0;i<n;i++)
-          if (i!=y) {
-            if (l[i][x]!=l[y][x])
-              return false;
-            else filled=filled&&fill_cross(i,x,n,m);
-          }
-        colchk=true;
-      }
+  }
+  if (rowchk) {
+    for (int i=0;i<m;i++)
+      f[y][i]=true;
+    for (int i=0;i<m;i++) {
+      if (i!=x)
+        fill_cross(y,i,n,m);
     }
-    // Row check
-    if (x>0  &&l[y][x-1]==l[y][x]) {
-      //cout<<"Check row leftwards"<<endl;
-      for (int i=0;i<m;i++)
-        if (i!=x) {
-          if (l[y][i]!=l[y][x])
-            return false;
-          else filled=filled&&fill_cross(y,i,n,m);
-        }
-      rowchk=true;
-    }
-    if (!rowchk) {
-      if (x<m-1&&l[y][x+1]==l[y][x]) {
-        //cout<<"Check row rightwards"<<endl;
-        for (int i=0;i<m;i++)
-          if (i!=x) {
-            if (l[y][i]!=l[y][x])
-              return false;
-            else filled=filled&&fill_cross(y,i,n,m);
-          }
-        rowchk=true;
-      }
-    }
-    // l[y][x]++;
-  } else filled=true;
-  return filled;
+  }
+  return colchk||rowchk;
 }
 
 int main(void) {
@@ -108,6 +111,10 @@ int main(void) {
     memset(f,0,sizeof(int)*N*M);
     cout<<"Case #"<<tt-t<<": "<<endl;
     cin>>n>>m;
+    if (n==1 || m==1) {
+      cout<<"Yes"<<endl;
+      continue;
+    }
     for (int i=0;i<n;i++)
       for (int j=0;j<m;j++)
         cin>>l[i][j];
