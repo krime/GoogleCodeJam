@@ -2,16 +2,14 @@
 #include<iostream>
 #include<cstdlib>
 #include<climits>
-
 int mote[110];
 int f[110];
 int cp(const void*a,const void*b) {
   return *(int*)a-*(int*)b;
 }
-int GetValue()
-{
+int GetValue() {
   int size, num,i,currentsize,step,min;
-  bool isone;
+	bool isone;
   scanf("%d %d",&size, &num);
   for(i=1;i<=num;++i) scanf("%d",mote+i);
   qsort(mote+1,num,sizeof mote[0],cp);
@@ -45,15 +43,17 @@ int GetValue()
   }
   min=INT_MAX;
   for(i=0;i<=num;++i) {
-    if ((f[i]!=INT_MAX) && (f[i]+num-i<min))
+    if ((f[i]!=INT_MAX) && (f[i]+num-i<min)) {
       min=f[i]+num-i;
+    }
   }
   return min;
 }
 int main(){
   int i,a,b,c,t;
   scanf("%d",&t);
-  for(i=1;i<=t;++i)
+  for(i=1;i<=t;++i) {
     printf("Case #%d: %d\n",i, GetValue());
+  }
   //scanf("%d",&t);
 }
