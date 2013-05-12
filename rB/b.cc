@@ -20,13 +20,25 @@ int main(void) {
     cout<<"Case #"<<tt-t<<": ";
     x=x>0?x:-x;
     int k=(x+y)/2;
+    // if (k>4) { // small case
+    if (k>706) {  // large case
+      p=0;
+      cout<<p<<endl;
+      continue;
+    }
     int sk=k*(2*k-1);
     int lk=sk+y;
     int uk=sk+2*k+1+y;
     if (n>=uk) p=1;
     else if (n<=lk) p=0;
-    else {}
+    else {
+      int m=n-sk;
+      if (m>2*k) {
+        
+      }
+    }
     cout<<p<<endl;
   }
+  cout<<(1<<31)<<endl;
   return 0;
 }
