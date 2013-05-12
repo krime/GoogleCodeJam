@@ -48,21 +48,6 @@ int main(void) {
         }
       }
     }
-        //for (int k=i;k+n<=j;k++) {
-        //  if (!strncmp(name+k,v,n)) {
-        //         /*
-    //         for (int x=i;x<j;x++)
-    //           putchar(name[x]);
-    //         puts("");
-    //         */
-    //         c++;
-    //         break;
-    //       }
-    //     }
-    //   }
-    // }
-    //printf("%s %d\n",name,n);
-    
     //cout<<name<<' '<<n<<v<<endl;
     cout<<c<<endl;
   }
