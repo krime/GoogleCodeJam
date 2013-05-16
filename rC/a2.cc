@@ -47,7 +47,7 @@ int main(void) {
         }
       }
     }
-    //cout<<name<<' '<<n<<v<<endl;
+    cout<<name<<' '<<n<<v<<endl;
     cout<<c<<endl;
   }
   return 0;
