@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 #include <iterator>
 #include <algorithm>
 #include <cstring>
@@ -9,6 +10,7 @@
 
 using namespace std;
 string name;
+//int b[L];
 
 int main(void) {
   /*
@@ -22,33 +24,43 @@ int main(void) {
     Length of name
   */
   int t,tt,n,l;
-  int c=0;
-  const char alpha[26]={
-    0,1,1,1,0,1,1,
-    1,0,1,1,1,1,1,
-    0,1,1,  1,1,1,
-    0,1,1,  1,1,1
-  };
+  long long s=0;
+  int a0=0,a1=0;
+
+  char conso[26]={0};
+  memset(conso,1,sizeof(conso));
+  
+  conso['a'-'a']=
+    conso['e'-'a']=
+    conso['i'-'a']=
+    conso['o'-'a']=
+    conso['u'-'a']=0;
+  
   cin>>t;
   tt=t;
   while (t--) {
     name.clear();
-    c=0;
     cout<<"Case #"<<tt-t<<": ";
     cin>>name>>n;
     l=name.size();
-    string v=string(n,'1');
-    for (int i=0;i<l;i++)
-      name[i]=alpha[name[i]-'a']+'0';
-    for (int i=0;i<l;i++) {
-      for (int j=i+n;j<=l;j++) {
-        if (search(name.begin()+i,name.begin()+j,v.begin(),v.end())!=name.begin()+j) {
-          c++;
-        }
-      }
+    //memset(b,0,sizeof(b));
+    vector<int> b=vector<int>(l);
+    a1=a0=conso[name[0]-'a'];
+    s=b[0]=a0*(n==1);
+    for (int i=1;i<l;i++) {
+      a1=conso[name[i]-'a']*(a0+1);
+      a0=a1;
+      if (a1>=n) b[i]=i-n+2;
+      else b[i]=b[i-1];
+      s+=b[i];
     }
-    cout<<name<<' '<<n<<v<<endl;
-    cout<<c<<endl;
+    cout<<s<<endl;
+    /*
+    cout<<"[";
+    for (int i=0;i<l;i++) cout<<' '<<a[i];
+    cout<<" ]"<<endl;
+    */
+    //for (int i=0;i<l;i++) cout<<b[i]<<endl;
   }
   return 0;
 }
