@@ -1,0 +1,34 @@
+General Infomations
+====================
+Command:	\"%C\"
+ExitNum:	%x
+
+Time Resources
+====================
+Elapsed:	%es
+CPUUser:	%Ss
+CPUKern:	%Us
+CPUUsed:	%P
+
+I/O Resources
+====================
+MajFals:	%F	faults
+MinFals:	%R	faults
+VoCtSwt:	%w	switches
+IvCtSwt:	%c	switches
+SwapNum:	%W	swaps
+SysfIns:	%I	inputs
+SysfOts:	%O	outputs
+SockRev:	%r	messages
+SockSen:	%s	messages
+SigDelv:	%k	signals
+
+Memory Resources
+====================
+AvgText:	%Xk
+AvgData:	%Dk
+AvgStak:	%pk
+AvgMems:	%Kk
+MaxResd:	%Mk
+AvgResd:	%tk
+SysPgSz:	%Zb

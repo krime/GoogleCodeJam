@@ -1,16 +1,11 @@
 #include <iostream>
-#include <sstream>
 #include <string>
-#include <vector>
-#include <iterator>
-#include <algorithm>
 #include <cstring>
 
 #define L 1000001
 
 using namespace std;
 string name;
-//int b[L];
 
 int main(void) {
   /*
@@ -25,7 +20,7 @@ int main(void) {
   */
   int t,tt,n,l;
   long long s=0;
-  int a0=0,a1=0;
+  int a0=0,a1=0,b=0;
 
   char conso[26]={0};
   memset(conso,1,sizeof(conso));
@@ -43,24 +38,14 @@ int main(void) {
     cout<<"Case #"<<tt-t<<": ";
     cin>>name>>n;
     l=name.size();
-    //memset(b,0,sizeof(b));
-    vector<int> b=vector<int>(l);
     a1=a0=conso[name[0]-'a'];
-    s=b[0]=a0*(n==1);
+    s=b=a0*(n==1);
     for (int i=1;i<l;i++) {
-      a1=conso[name[i]-'a']*(a0+1);
-      a0=a1;
-      if (a1>=n) b[i]=i-n+2;
-      else b[i]=b[i-1];
-      s+=b[i];
+      a0=a1=conso[name[i]-'a']*(a0+1);
+      if (a1>=n) b=i-n+2;
+      s+=b;
     }
     cout<<s<<endl;
-    /*
-    cout<<"[";
-    for (int i=0;i<l;i++) cout<<' '<<a[i];
-    cout<<" ]"<<endl;
-    */
-    //for (int i=0;i<l;i++) cout<<b[i]<<endl;
   }
   return 0;
 }
