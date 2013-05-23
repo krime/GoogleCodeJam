@@ -53,5 +53,11 @@ template<typename T> inline T sqr(T a){ return a * a; }
 #define MAXN 100007
 
 int main(void) {
+  int t,tt,n;
+  cin>>t;
+  tt=t;
+  while (t--) {
+    cout<<"Case #"<<tt-t<<": ";
+  }
   return 0;
 }
