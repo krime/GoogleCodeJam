@@ -53,7 +53,7 @@ template<typename T> inline T sqr(T a){ return a * a; }
 #define MAXN 100007
 
 int main(void) {
-  int t,tt,n;
+  int t,tt,n,x,y;
   cin>>t;
   tt=t;
   while (t--) {
