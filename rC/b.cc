@@ -58,6 +58,7 @@ int main(void) {
   tt=t;
   while (t--) {
     cout<<"Case #"<<tt-t<<": ";
+    cin>>x>>y;
   }
   return 0;
 }
